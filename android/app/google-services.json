@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "901131914267",
+    "project_id": "alcachofa-f8a30",
+    "storage_bucket": "alcachofa-f8a30.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901131914267:android:c537b524e4dade04797cbe",
+        "android_client_info": {
+          "package_name": "me.dmq.alcachofa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901131914267-2nch28phdb37t1qdp76lerib43nvtuoc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtDfHSXlJ7Lm4qppCEH-5PH_7hYllAoD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901131914267-2nch28phdb37t1qdp76lerib43nvtuoc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
