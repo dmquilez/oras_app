@@ -79,16 +79,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   User? user = FirebaseAuth.instance.currentUser;
   final _database = FirebaseDatabase.instance.reference();
-  String _diplaytText = "";
+  final _firestoreDoc = FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.uid);
+  String _diplaytText = "Loading...";
 
   @override
   void initState() {
     super.initState();
-    _activateListeners();
   }
 
-  void _activateListeners(){
-    _database.child("houses/0/apartments/0/").onValue.listen((event) {
+  void _activateListeners(userApartment){
+
+
+    _database.child("houses/0/apartments/$userApartment/").onValue.listen((event) {
       final data = Map<String, dynamic>.from(event.snapshot.value);
       final String consumption = data['Dishwasher']['measurements'][0]['Consumption'];
       //final String consumption = event.snapshot.value;
@@ -114,7 +116,15 @@ class _HomePageState extends State<HomePage> {
     height: 150,
     ),
     SizedBox(height: 24.0),
-    Text(_diplaytText),
+      StreamBuilder<DocumentSnapshot>(
+        stream: FirebaseFirestore.instance.collection('users').doc(user!.uid).get().asStream(),
+        builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (!snapshot.hasData) return CircularProgressIndicator();
+          _activateListeners(snapshot.data!["apartment"]);
+          return Text(_diplaytText);
+        },
+
+      ),
     SizedBox(height: 48.0),
     ],
     ));
