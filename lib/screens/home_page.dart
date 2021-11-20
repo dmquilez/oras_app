@@ -1,4 +1,24 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:oras_app/charts/bar_chart_sample1.dart';
+import 'package:oras_app/charts/bar_chart_sample2.dart';
+import 'package:oras_app/charts/bar_chart_sample3.dart';
+import 'package:oras_app/charts/bar_chart_sample4.dart';
+import 'package:oras_app/charts/bar_chart_sample5.dart';
+import 'package:oras_app/charts/line_chart_sample1.dart';
+import 'package:oras_app/charts/line_chart_sample10.dart';
+import 'package:oras_app/charts/line_chart_sample2.dart';
+import 'package:oras_app/charts/line_chart_sample3.dart';
+import 'package:oras_app/charts/line_chart_sample4.dart';
+import 'package:oras_app/charts/line_chart_sample5.dart';
+import 'package:oras_app/charts/line_chart_sample6.dart';
+import 'package:oras_app/charts/line_chart_sample7.dart';
+import 'package:oras_app/charts/line_chart_sample8.dart';
+import 'package:oras_app/charts/line_chart_sample9.dart';
+import 'package:oras_app/charts/pie_chart_sample1.dart';
+import 'package:oras_app/charts/pie_chart_sample2.dart';
+import 'package:oras_app/charts/pie_chart_sample3.dart';
+import 'package:oras_app/charts/scatter_chart_sample1.dart';
+import 'package:oras_app/charts/scatter_chart_sample2.dart';
 import 'package:oras_app/services/firebase_service.dart';
 import 'package:oras_app/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -89,11 +109,12 @@ class _HomePageState extends State<HomePage> {
           title: Text("Home"),
         ),
         drawer: CustomDrawer.getDrawer(context),
-        body: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-          ],
-        )));
+        body:  GridView.count(crossAxisCount: 1, children: [BarChartSample1(), BarChartSample2(), BarChartSample3(), BarChartSample4(), BarChartSample5(),
+          PieChartSample1(), PieChartSample2(), PieChartSample3(),
+          ScatterChartSample1(), ScatterChartSample2(),
+          LineChartSample1(), LineChartSample2(), LineChartSample3(), LineChartSample4(), LineChartSample5(), LineChartSample6(), LineChartSample7(), LineChartSample8(), LineChartSample9(), LineChartSample10(),
+          Image.asset(
+          "assets/images/earth_without_bg.gif",
+        )]),);
   }
 }
