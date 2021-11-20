@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "901131914267",
+    "firebase_url": "https://alcachofa-f8a30-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "alcachofa-f8a30",
     "storage_bucket": "alcachofa-f8a30.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "901131914267-1v2sm0ql8j9ks8kvqto1jmps34rqv4k0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.dmq.alcachofa.oras_app",
+            "certificate_hash": "ab081a80d56800e0edd4b9fb6499b5a3e8c6e4b2"
+          }
+        },
         {
           "client_id": "901131914267-immu4fu8l2r0d7mimogbj00shdup69vo.apps.googleusercontent.com",
           "client_type": 1,

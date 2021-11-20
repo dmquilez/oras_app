@@ -1,28 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:oras_app/charts/bar_chart_sample1.dart';
-import 'package:oras_app/charts/bar_chart_sample2.dart';
-import 'package:oras_app/charts/bar_chart_sample3.dart';
-import 'package:oras_app/charts/bar_chart_sample4.dart';
-import 'package:oras_app/charts/bar_chart_sample5.dart';
-import 'package:oras_app/charts/line_chart_sample1.dart';
-import 'package:oras_app/charts/line_chart_sample10.dart';
-import 'package:oras_app/charts/line_chart_sample2.dart';
-import 'package:oras_app/charts/line_chart_sample3.dart';
-import 'package:oras_app/charts/line_chart_sample4.dart';
-import 'package:oras_app/charts/line_chart_sample5.dart';
-import 'package:oras_app/charts/line_chart_sample6.dart';
-import 'package:oras_app/charts/line_chart_sample7.dart';
-import 'package:oras_app/charts/line_chart_sample8.dart';
-import 'package:oras_app/charts/line_chart_sample9.dart';
-import 'package:oras_app/charts/pie_chart_sample1.dart';
-import 'package:oras_app/charts/pie_chart_sample2.dart';
-import 'package:oras_app/charts/pie_chart_sample3.dart';
-import 'package:oras_app/charts/scatter_chart_sample1.dart';
-import 'package:oras_app/charts/scatter_chart_sample2.dart';
+import 'package:oras_app/main.dart';
 import 'package:oras_app/services/firebase_service.dart';
 import 'package:oras_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_database/firebase_database.dart';
+
 
 class DrawerItem {
   String title;
@@ -83,6 +67,7 @@ class CustomDrawer {
   }
 }
 
+
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
@@ -91,30 +76,39 @@ class HomePage extends StatefulWidget {
 }
 
 
-
 class _HomePageState extends State<HomePage> {
   User? user = FirebaseAuth.instance.currentUser;
+  final _database = FirebaseDatabase.instance.reference();
+  String _diplaytText = "Results go here";
+
   @override
   void initState() {
     super.initState();
+    _activateListeners();
   }
-  
-  
+
+  void _activateListeners(){
+    _database.child("houses/0/apartments/0/Dishwasher/measurements/0/Consumption").onValue.listen((event) {
+      final String consumption = event.snapshot.value;
+      setState(() {
+        _diplaytText = consumption;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.blue),
-          title: Text("Home"),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          width: 150,
+          height: 150,
         ),
-        drawer: CustomDrawer.getDrawer(context),
-        body:  GridView.count(crossAxisCount: 1, children: [BarChartSample1(), BarChartSample2(), BarChartSample3(), BarChartSample4(), BarChartSample5(),
-          PieChartSample1(), PieChartSample2(), PieChartSample3(),
-          ScatterChartSample1(), ScatterChartSample2(),
-          LineChartSample1(), LineChartSample2(), LineChartSample3(), LineChartSample4(), LineChartSample5(), LineChartSample6(), LineChartSample7(), LineChartSample8(), LineChartSample9(), LineChartSample10(),
-          Image.asset(
-          "assets/images/earth_without_bg.gif",
-        )]),);
+        SizedBox(height: 24.0),
+        Text(_diplaytText),
+        SizedBox(height: 48.0),
+      ],
+    );
   }
 }
