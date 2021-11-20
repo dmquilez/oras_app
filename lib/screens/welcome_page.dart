@@ -72,17 +72,25 @@ class _GoogleSignInState extends State<GoogleSignIn> {
     // Create a CollectionReference called users that references the firestore collection
     CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-    Future<void> addUser() {
-      // Call the user's CollectionReference to add a new user
-      return users
-          .doc(googleID)
-          .set({'name': FirebaseAuth.instance.currentUser!.displayName,
-                'email': FirebaseAuth.instance.currentUser!.email,
-                'apartment': 0})
-          .then((_) => print("User Added"))
-          .catchError((error) => print("Failed to add user: $error"));
-    }
-      await addUser();
+    Future<void> addUser() async {
+
+      var a = await users.doc(FirebaseAuth.instance.currentUser!.uid).get();
+
+      if(!a.exists){
+        // Call the user's CollectionReference to add a new user
+        return users
+            .doc(googleID)
+            .set({'name': FirebaseAuth.instance.currentUser!.displayName,
+          'email': FirebaseAuth.instance.currentUser!.email,
+          'picture': FirebaseAuth.instance.currentUser!.photoURL,
+          'apartment': 0})
+            .then((_) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+      }
+
+      }
+
+    await addUser();
   }
 
   @override

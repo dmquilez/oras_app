@@ -41,6 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ],
           systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.blue),
           title: Text("Profile"),
+          centerTitle: true,
         ),
         drawer: CustomDrawer.getDrawer(context),
         body: Center(

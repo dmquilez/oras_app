@@ -41,6 +41,7 @@ class CustomDrawer {
 
   static final _drawerItems = [
     DrawerItem("Home", Icons.house),
+    DrawerItem("Friends", Icons.people),
     DrawerItem("Profile", Icons.person),
   ];
 
@@ -51,6 +52,9 @@ class CustomDrawer {
       Navigator.pushNamedAndRemoveUntil(context, Constants.homeNavigate, (route) => false);
     }
     if(selectedDrawerIndex == 1){
+      Navigator.pushNamedAndRemoveUntil(context, Constants.friendsNavigate, (route) => false);
+    }
+    if(selectedDrawerIndex == 2){
       Navigator.pushNamedAndRemoveUntil(context, Constants.profileNavigate, (route) => false);
     }
   }
@@ -130,6 +134,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.blue),
           title: Text("Home"),
+          centerTitle: true,
         ),
         drawer: CustomDrawer.getDrawer(context),
         body: GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,

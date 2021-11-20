@@ -29,6 +29,8 @@ class Constants {
   static const welcomePage = '/';
   static const homeNavigate = '/home';
   static const profileNavigate = '/profile';
+  static const friendsNavigate = '/friends';
+  static const friendsAddNavigate = '/friends-add';
 
   static const statusBarColor = SystemUiOverlayStyle(
       statusBarColor: Constants.kPrimaryColor,
