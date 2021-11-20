@@ -6,6 +6,26 @@ import 'package:oras_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:oras_app/charts/bar_chart_sample1.dart';
+import 'package:oras_app/charts/bar_chart_sample2.dart';
+import 'package:oras_app/charts/bar_chart_sample3.dart';
+import 'package:oras_app/charts/bar_chart_sample4.dart';
+import 'package:oras_app/charts/bar_chart_sample5.dart';
+import 'package:oras_app/charts/line_chart_sample1.dart';
+import 'package:oras_app/charts/line_chart_sample10.dart';
+import 'package:oras_app/charts/line_chart_sample2.dart';
+import 'package:oras_app/charts/line_chart_sample3.dart';
+import 'package:oras_app/charts/line_chart_sample4.dart';
+import 'package:oras_app/charts/line_chart_sample5.dart';
+import 'package:oras_app/charts/line_chart_sample6.dart';
+import 'package:oras_app/charts/line_chart_sample7.dart';
+import 'package:oras_app/charts/line_chart_sample8.dart';
+import 'package:oras_app/charts/line_chart_sample9.dart';
+import 'package:oras_app/charts/pie_chart_sample1.dart';
+import 'package:oras_app/charts/pie_chart_sample2.dart';
+import 'package:oras_app/charts/pie_chart_sample3.dart';
+import 'package:oras_app/charts/scatter_chart_sample1.dart';
+import 'package:oras_app/charts/scatter_chart_sample2.dart';
 
 
 class DrawerItem {
@@ -66,7 +86,7 @@ class CustomDrawer {
     );
   }
 }
-
+double global_consumption = 5;
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -85,48 +105,35 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    _activateListeners(0);
   }
 
   void _activateListeners(userApartment){
 
+    Future.delayed(Duration(milliseconds: 100), () {
 
     _database.child("houses/0/apartments/$userApartment/").onValue.listen((event) {
       final data = Map<String, dynamic>.from(event.snapshot.value);
       final String consumption = data['Dishwasher']['measurements'][0]['Consumption'];
+
       //final String consumption = event.snapshot.value;
       setState(() {
-        _diplaytText = consumption;
+        global_consumption =  double.parse(consumption);
       });
     });
   }
+    );}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.blue),
-        title: Text("Home"),
-      ),
-      drawer: CustomDrawer.getDrawer(context),
-      body:  Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-    children: <Widget>[
-    Container(
-    width: 150,
-    height: 150,
-    ),
-    SizedBox(height: 24.0),
-      StreamBuilder<DocumentSnapshot>(
-        stream: FirebaseFirestore.instance.collection('users').doc(user!.uid).get().asStream(),
-        builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-          if (!snapshot.hasData) return CircularProgressIndicator();
-          _activateListeners(snapshot.data!["apartment"]);
-          return Text(_diplaytText);
-        },
+        appBar: AppBar(
+          systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.blue),
+          title: Text("Home"),
+        ),
+        drawer: CustomDrawer.getDrawer(context),
+        body: GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
+                    shrinkWrap: true,children: [BarChartSample1(global_consumption,2,3,4,5,6,7)]));
 
-      ),
-    SizedBox(height: 48.0),
-    ],
-    ));
   }
 }

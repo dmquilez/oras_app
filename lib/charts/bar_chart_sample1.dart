@@ -4,7 +4,18 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:oras_app/utils/color_extensions.dart';
 
-class BarChartSample1 extends StatefulWidget {
+
+class BarChartSample1 extends StatefulWidget{
+  final double bar_0;
+  final double bar_1;
+  final double bar_2;
+  final double bar_3;
+  final double bar_4;
+  final double bar_5;
+  final double bar_6;
+
+  BarChartSample1(this.bar_0, this.bar_1, this.bar_2, this.bar_3, this.bar_4, this.bar_5, this.bar_6);
+
   final List<Color> availableColors = const [
     Colors.purpleAccent,
     Colors.yellow,
@@ -13,8 +24,6 @@ class BarChartSample1 extends StatefulWidget {
     Colors.pink,
     Colors.redAccent,
   ];
-
-  const BarChartSample1({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => BarChartSample1State();
@@ -28,12 +37,15 @@ class BarChartSample1State extends State<BarChartSample1> {
 
   bool isPlaying = false;
 
+
+
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 1,
       child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+        margin: EdgeInsets.all(25),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
         color: const Color(0xff81e5cd),
         child: Stack(
           children: <Widget>[
@@ -45,7 +57,7 @@ class BarChartSample1State extends State<BarChartSample1> {
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   const Text(
-                    'Mingguan',
+                    'Water Consumption',
                     style: TextStyle(
                         color: Color(0xff0f4a3c),
                         fontSize: 24,
@@ -55,7 +67,7 @@ class BarChartSample1State extends State<BarChartSample1> {
                     height: 4,
                   ),
                   const Text(
-                    'Grafik konsumsi kalori',
+                    'Weekly Liters',
                     style: TextStyle(
                         color: Color(0xff379982),
                         fontSize: 18,
@@ -79,26 +91,7 @@ class BarChartSample1State extends State<BarChartSample1> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  icon: Icon(
-                    isPlaying ? Icons.pause : Icons.play_arrow,
-                    color: const Color(0xff0f4a3c),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      isPlaying = !isPlaying;
-                      if (isPlaying) {
-                        refreshState();
-                      }
-                    });
-                  },
-                ),
-              ),
-            )
+
           ],
         ),
       ),
@@ -137,19 +130,19 @@ class BarChartSample1State extends State<BarChartSample1> {
   List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
         switch (i) {
           case 0:
-            return makeGroupData(0, 5, isTouched: i == touchedIndex);
+            return makeGroupData(0, widget.bar_0, isTouched: i == touchedIndex);
           case 1:
-            return makeGroupData(1, 6.5, isTouched: i == touchedIndex);
+            return makeGroupData(1, widget.bar_1, isTouched: i == touchedIndex);
           case 2:
-            return makeGroupData(2, 5, isTouched: i == touchedIndex);
+            return makeGroupData(2, widget.bar_2, isTouched: i == touchedIndex);
           case 3:
-            return makeGroupData(3, 7.5, isTouched: i == touchedIndex);
+            return makeGroupData(3, widget.bar_3, isTouched: i == touchedIndex);
           case 4:
-            return makeGroupData(4, 9, isTouched: i == touchedIndex);
+            return makeGroupData(4, widget.bar_4, isTouched: i == touchedIndex);
           case 5:
-            return makeGroupData(5, 11.5, isTouched: i == touchedIndex);
+            return makeGroupData(5, widget.bar_5, isTouched: i == touchedIndex);
           case 6:
-            return makeGroupData(6, 6.5, isTouched: i == touchedIndex);
+            return makeGroupData(6, widget.bar_6, isTouched: i == touchedIndex);
           default:
             return throw Error();
         }
@@ -196,7 +189,7 @@ class BarChartSample1State extends State<BarChartSample1> {
                 ),
                 children: <TextSpan>[
                   TextSpan(
-                    text: (rod.y - 1).toString(),
+                    text: (rod.y - 1).toString()+" L",
                     style: const TextStyle(
                       color: Colors.yellow,
                       fontSize: 16,
