@@ -79,7 +79,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   User? user = FirebaseAuth.instance.currentUser;
   final _database = FirebaseDatabase.instance.reference();
-  String _diplaytText = "Results go here";
+  String _diplaytText = "";
 
   @override
   void initState() {
@@ -88,8 +88,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _activateListeners(){
-    _database.child("houses/0/apartments/0/Dishwasher/measurements/0/Consumption").onValue.listen((event) {
-      final String consumption = event.snapshot.value;
+    _database.child("houses/0/apartments/0/").onValue.listen((event) {
+      final data = Map<String, dynamic>.from(event.snapshot.value);
+      final String consumption = data['Dishwasher']['measurements'][0]['Consumption'];
+      //final String consumption = event.snapshot.value;
       setState(() {
         _diplaytText = consumption;
       });
@@ -98,17 +100,23 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Scaffold(
+      appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.blue),
+        title: Text("Home"),
+      ),
+      drawer: CustomDrawer.getDrawer(context),
+      body:  Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Container(
-          width: 150,
-          height: 150,
-        ),
-        SizedBox(height: 24.0),
-        Text(_diplaytText),
-        SizedBox(height: 48.0),
-      ],
-    );
+    children: <Widget>[
+    Container(
+    width: 150,
+    height: 150,
+    ),
+    SizedBox(height: 24.0),
+    Text(_diplaytText),
+    SizedBox(height: 48.0),
+    ],
+    ));
   }
 }
