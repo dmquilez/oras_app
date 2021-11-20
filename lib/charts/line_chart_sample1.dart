@@ -156,7 +156,7 @@ class _LineChart extends StatelessWidget {
   LineChartBarData get lineChartBarData1_1 => LineChartBarData(
         isCurved: true,
         colors: [const Color(0xff4af699)],
-        barWidth: 8,
+        barWidth: 5,
         isStrokeCapRound: true,
         dotData: FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
@@ -174,7 +174,7 @@ class _LineChart extends StatelessWidget {
   LineChartBarData get lineChartBarData1_2 => LineChartBarData(
         isCurved: true,
         colors: [const Color(0xffaa4cfc)],
-        barWidth: 8,
+        barWidth: 5,
         isStrokeCapRound: true,
         dotData: FlDotData(show: false),
         belowBarData: BarAreaData(show: false, colors: [
@@ -193,7 +193,7 @@ class _LineChart extends StatelessWidget {
   LineChartBarData get lineChartBarData1_3 => LineChartBarData(
         isCurved: true,
         colors: const [Color(0xff27b6fc)],
-        barWidth: 8,
+        barWidth: 5,
         isStrokeCapRound: true,
         dotData: FlDotData(show: false),
         belowBarData: BarAreaData(show: false),
@@ -286,6 +286,7 @@ class LineChartSample1State extends State<LineChartSample1> {
     return AspectRatio(
       aspectRatio: 1.23,
       child: Container(
+          margin: EdgeInsets.only(right: 25, left: 25, bottom: 25),
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(18)),
           gradient: LinearGradient(

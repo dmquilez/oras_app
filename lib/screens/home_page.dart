@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:oras_app/main.dart';
 import 'package:oras_app/services/firebase_service.dart';
 import 'package:oras_app/utils/constants.dart';
@@ -90,7 +91,13 @@ class CustomDrawer {
     );
   }
 }
-double global_consumption = 5;
+double global_consumption_0 = 0;
+double global_consumption_1 = 0;
+double global_consumption_2 = 0;
+double global_consumption_3 = 0;
+double global_consumption_4 = 0;
+double global_consumption_5 = 0;
+double global_consumption_6 = 0;
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -116,13 +123,23 @@ class _HomePageState extends State<HomePage> {
 
     Future.delayed(Duration(milliseconds: 100), () {
 
-    _database.child("houses/0/apartments/$userApartment/").onValue.listen((event) {
-      final data = Map<String, dynamic>.from(event.snapshot.value);
-      final String consumption = data['Dishwasher']['measurements'][0]['Consumption'];
+      final _firebaseRef = _database.child("houses/0/apartments/$userApartment/");
+
+    _firebaseRef.child("Dishwasher/measurements/").orderByChild("TimeStamp").equalTo("2020-01-01T04:30:42").onValue.listen((event) {
+      //final data = List<String>.from(event.snapshot.value);
+      print(event.snapshot.value[0]['Consumption']);
+
+      final String consumption = (int.parse(event.snapshot.value[0]['FlowTime']) / 60).toString();
 
       //final String consumption = event.snapshot.value;
       setState(() {
-        global_consumption =  double.parse(consumption);
+        global_consumption_0 =  double.parse(consumption);
+        global_consumption_1 =  double.parse(consumption);
+        global_consumption_2 =  double.parse(consumption);
+        global_consumption_3 =  double.parse(consumption);
+        global_consumption_4 =  double.parse(consumption);
+        global_consumption_5 =  double.parse(consumption);
+        global_consumption_6 =  double.parse(consumption);
       });
     });
   }
@@ -130,7 +147,71 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: new ThemeData(scaffoldBackgroundColor: const Color(0xFF639CEA)),
+      home: DefaultTabController(
+        length: 4,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: const TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.bar_chart_rounded)),
+                Tab(icon: FaIcon(FontAwesomeIcons.tint)),
+                Tab(icon: Icon(Icons.power_outlined)),
+                Tab(icon: Icon(Icons.euro)),
+
+              ],
+            ),
+            title: const Text('Home'),
+          ),
+          drawer: CustomDrawer.getDrawer(context),
+          body: TabBarView(
+            children: [
+              GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
+                  shrinkWrap: true, children: [Card(
+                    margin: EdgeInsets.only(right: 25,left: 25, top: 25),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
+                    color:  Color(0xff252d49),
+                    child: Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child:
+                            Image.asset(
+                              "assets/images/very_happy.gif",
+                            ),
+                          ),
+
+
+                      ],
+                    ),
+                  ),
+                    BarChartSample1(global_consumption_0,global_consumption_1,global_consumption_2,global_consumption_3,global_consumption_4,global_consumption_5, global_consumption_6),
+                    LineChartSample1()]),
+
+              GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
+                  shrinkWrap: true, children: [
+                    BarChartSample1(global_consumption_0,global_consumption_1,global_consumption_2,global_consumption_3,global_consumption_4,global_consumption_5, global_consumption_6),
+                    LineChartSample1()]),
+
+
+              GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
+                  shrinkWrap: true, children: [
+                    BarChartSample1(global_consumption_0,global_consumption_1,global_consumption_2,global_consumption_3,global_consumption_4,global_consumption_5, global_consumption_6),
+                    LineChartSample1()]),
+
+
+              GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
+                  shrinkWrap: true, children: [
+                    BarChartSample1(global_consumption_0,global_consumption_1,global_consumption_2,global_consumption_3,global_consumption_4,global_consumption_5, global_consumption_6),
+                    LineChartSample1()])
+            ],
+          ),
+        ),
+      ),
+    );Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.blue),
           title: Text("Home"),
@@ -138,7 +219,11 @@ class _HomePageState extends State<HomePage> {
         ),
         drawer: CustomDrawer.getDrawer(context),
         body: GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
-                    shrinkWrap: true,children: [BarChartSample1(global_consumption,2,3,4,5,6,7)]));
+                    shrinkWrap: true, children: [Image.asset(
+                                                  "assets/images/very_happy.gif",
+                                                ),
+                                                BarChartSample1(global_consumption_0,global_consumption_1,global_consumption_2,global_consumption_3,global_consumption_4,global_consumption_5, global_consumption_6),
+                                                LineChartSample1()]));
 
   }
 }
