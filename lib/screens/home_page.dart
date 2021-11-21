@@ -153,29 +153,29 @@ class _HomePageState extends State<HomePage> {
 
       _firebaseRef.child("Hydractiva_shower/").onValue.listen((event) {
 
-      //print(event.snapshot.value[0]['Consumption']);
+        //print(event.snapshot.value[0]['Consumption']);
 
-      final double consumption_monday = event.snapshot.value['consumption'][46];
-      final double consumption_tuesday = event.snapshot.value['consumption'][47];
-      final double consumption_wednesday = event.snapshot.value['consumption'][48];
-      final double consumption_thursday = event.snapshot.value['consumption'][49];
-      final double consumption_predict_friday = event.snapshot.value['consumption_predict'][0];
-      final double consumption_predict_saturday = event.snapshot.value['consumption_predict'][1];
-      final double consumption_predict_sunday = event.snapshot.value['consumption_predict'][2];
+        final double consumption_monday = event.snapshot.value['consumption'][46];
+        final double consumption_tuesday = event.snapshot.value['consumption'][47];
+        final double consumption_wednesday = event.snapshot.value['consumption'][48];
+        final double consumption_thursday = event.snapshot.value['consumption'][49];
+        final double consumption_predict_friday = event.snapshot.value['consumption_predict'][0];
+        final double consumption_predict_saturday = event.snapshot.value['consumption_predict'][1];
+        final double consumption_predict_sunday = event.snapshot.value['consumption_predict'][2];
 
 
 
-      //final String consumption = event.snapshot.value;
-      setState(() {
-        global_consumption_0_HS =  double.parse(consumption_monday.toStringAsFixed(2));
-        global_consumption_1_HS =  double.parse(consumption_tuesday.toStringAsFixed(2));
-        global_consumption_2_HS =  double.parse(consumption_wednesday.toStringAsFixed(2));
-        global_consumption_3_HS =  double.parse(consumption_thursday.toStringAsFixed(2));
-        global_consumption_4_HS =  double.parse(consumption_predict_friday.toStringAsFixed(2));
-        global_consumption_5_HS =  double.parse(consumption_predict_saturday.toStringAsFixed(2));
-        global_consumption_6_HS =  double.parse(consumption_predict_sunday.toStringAsFixed(2));
+        //final String consumption = event.snapshot.value;
+        setState(() {
+          global_consumption_0_HS =  double.parse(consumption_monday.toStringAsFixed(2));
+          global_consumption_1_HS =  double.parse(consumption_tuesday.toStringAsFixed(2));
+          global_consumption_2_HS =  double.parse(consumption_wednesday.toStringAsFixed(2));
+          global_consumption_3_HS =  double.parse(consumption_thursday.toStringAsFixed(2));
+          global_consumption_4_HS =  double.parse(consumption_predict_friday.toStringAsFixed(2));
+          global_consumption_5_HS =  double.parse(consumption_predict_saturday.toStringAsFixed(2));
+          global_consumption_6_HS =  double.parse(consumption_predict_sunday.toStringAsFixed(2));
+        });
       });
-    });
 
       _firebaseRef.child("Kitchen_optima_faucet/").onValue.listen((event) {
 
@@ -228,8 +228,8 @@ class _HomePageState extends State<HomePage> {
           global_consumption_6_WM =  double.parse(consumption_predict_sunday.toStringAsFixed(2));
         });
 
-  }
-    );
+      }
+      );
 
     }
     );
@@ -255,6 +255,7 @@ class _HomePageState extends State<HomePage> {
 
               ],
             ),
+            systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.blue),
             title: const Text('Home'),
           ),
           drawer: CustomDrawer.getDrawer(context),
@@ -262,91 +263,105 @@ class _HomePageState extends State<HomePage> {
             children: [
               GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
                   shrinkWrap: true, children: [
-            FlipCard(
-            fill: Fill.fillBack, // Fill the back side of the card to make in the same size as the front.
-            direction: FlipDirection.HORIZONTAL, // default
-            front: Container(
-              child: Card(
-                margin: EdgeInsets.only(right: 25,left: 25, top: 25),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
-                color:  Color(0xff252d49),
-                child: Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(16),
-                      child:
-                      Image.asset(
-                        "assets/images/very_happy.gif",
+                    FlipCard(
+                      fill: Fill.fillBack, // Fill the back side of the card to make in the same size as the front.
+                      direction: FlipDirection.HORIZONTAL, // default
+                      front: Container(
+                        child: Card(
+                          margin: EdgeInsets.only(right: 15,left: 15, top: 15, bottom: 0),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
+                          color:  Color(0xff252d49),
+                          child: Stack(
+                            alignment: AlignmentDirectional.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(16),
+                                child:
+                                Image.asset(
+                                  "assets/images/very_happy.gif",
+                                ),
+                              ),
+
+
+                            ],
+                          ),
+                        ),
+                      ),
+                      back: Container(
+                        child: Card(
+                          margin: EdgeInsets.only(right: 15,left: 15, top: 15, bottom: 0),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
+                          color:  Color(0xff252d49),
+                          child: Stack(
+                            alignment: AlignmentDirectional.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(16),
+                                child:
+                                Text("You are saving water", style: TextStyle(
+
+                                  color: Colors.white,
+                                  fontSize: 25.0,
+                                  fontWeight:  FontWeight.w300,
+                                )
+                                ),
+                              ),
+
+
+
+
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-
-
-                  ],
-                ),
-              ),
-            ),
-            back: Container(
-              child: Card(
-                margin: EdgeInsets.only(right: 25,left: 25, top: 25),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
-                color:  Color(0xff252d49),
-                child: Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(16),
-                      child:
-                      Text("Good job!", style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25.0,
-                      )),
-                    ),
-
-
-
-
-                  ],
-                ),
-              ),
-            ),
-          ),
-                    BarChartSample1(global_consumption_0_HS,global_consumption_1_HS,global_consumption_2_HS,global_consumption_3_HS,global_consumption_4_HS,global_consumption_5_HS, global_consumption_6_HS),
-                    LineChartSample1()]),
+                    BarChartSample1(50,45,72,35,46,32, 37,'Water Usage (min)','Household',Color(
+                        0xff3be2ba),
+                        Color(0xff0f4a3c),"min",75),
+                    ]),
 
               GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
                   shrinkWrap: true, children: [
-                    BarChartSample1(global_consumption_0_HS,global_consumption_1_HS,global_consumption_2_HS,global_consumption_3_HS,global_consumption_4_HS,global_consumption_5_HS, global_consumption_6_HS),
-                    LineChartSample1()]),
+                    BarChartSample1(52,65,73,27,34,63, 41,'Water Consumption (L)','Shower',Color(
+                        0xff66d3ff), Color(0xff0f668b),"L",75),
+                    BarChartSample1(74,26,113,53,89,130, 15,'Water Consumption (L)','Kitchen',Color(
+                        0xffde6d59),
+                        Color(0xff7f3e32), "L",150),
+                    BarChartSample1(global_consumption_0_WM,global_consumption_1_WM,global_consumption_2_WM,global_consumption_3_WM,global_consumption_4_WM,global_consumption_5_WM, global_consumption_6_WM,'Water Consumption (L)','Washing Machine',Color(
+                        0xffe7c45c),
+                        Color(0xffb39847),"L",240),
+                    ]),
 
 
               GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
                   shrinkWrap: true, children: [
-                    BarChartSample1(global_consumption_0_HS,global_consumption_1_HS,global_consumption_2_HS,global_consumption_3_HS,global_consumption_4_HS,global_consumption_5_HS, global_consumption_6_HS),
-                    LineChartSample1()]),
+                    BarChartSample1(global_consumption_0_HS,global_consumption_1_HS,global_consumption_2_HS,global_consumption_3_HS,global_consumption_4_HS,global_consumption_5_HS, global_consumption_6_HS,'Energy (kWh)','Shower',Color(
+                        0xff66d3ff), Color(0xff0f668b),"kWh",75),
+                    BarChartSample1(global_consumption_0_KOF,global_consumption_1_KOF,global_consumption_2_KOF,global_consumption_3_KOF,global_consumption_4_KOF,global_consumption_5_KOF, global_consumption_6_KOF,'Energy (kWh)','Kitchen',Color(
+                        0xffde6d59),
+                        Color(0xff7f3e32),"kWh",150),
+                    BarChartSample1(global_consumption_0_WM,global_consumption_1_WM,global_consumption_2_WM,global_consumption_3_WM,global_consumption_4_WM,global_consumption_5_WM, global_consumption_6_WM,'Energy (kWh)','Washing Machine',Color(
+                        0xffe7c45c),
+                        Color(0xffb39847),"kWh",240),
+                    ]),
 
 
               GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
                   shrinkWrap: true, children: [
-                    BarChartSample1(global_consumption_0_HS,global_consumption_1_HS,global_consumption_2_HS,global_consumption_3_HS,global_consumption_4_HS,global_consumption_5_HS, global_consumption_6_HS),
-                    LineChartSample1()]),
+                    BarChartSample1(global_consumption_0_HS,global_consumption_1_HS,global_consumption_2_HS,global_consumption_3_HS,global_consumption_4_HS,global_consumption_5_HS, global_consumption_6_HS,'Budget (€)','Shower',Color(
+                        0xff66d3ff), Color(0xff0f668b),"€",75),
+                    BarChartSample1(global_consumption_0_KOF,global_consumption_1_KOF,global_consumption_2_KOF,global_consumption_3_KOF,global_consumption_4_KOF,global_consumption_5_KOF, global_consumption_6_KOF,'Budget (€)','Kitchen',Color(
+                        0xffde6d59),
+                        Color(0xff7f3e32),"€",150),
+                    BarChartSample1(global_consumption_0_WM,global_consumption_1_WM,global_consumption_2_WM,global_consumption_3_WM,global_consumption_4_WM,global_consumption_5_WM, global_consumption_6_WM,'Budget (€)','Washing Machine',Color(
+                        0xffe7c45c),
+                        Color(0xffb39847),"€",240),
+                    ]),
             ],
           ),
         ),
       ),
-    );Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.blue),
-          title: Text("Home"),
-          centerTitle: true,
-        ),
-        drawer: CustomDrawer.getDrawer(context),
-        body: GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
-                    shrinkWrap: true, children: [Image.asset(
-                                                  "assets/images/very_happy.gif",
-                                                ),
-                                                BarChartSample1(global_consumption_0,global_consumption_1,global_consumption_2,global_consumption_3,global_consumption_4,global_consumption_5, global_consumption_6),
-                                                LineChartSample1()]));
+    );
 
   }
 }

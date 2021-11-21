@@ -162,11 +162,11 @@ class _LineChart extends StatelessWidget {
         belowBarData: BarAreaData(show: false),
         spots: const [
           FlSpot(1, 1),
-          FlSpot(3, 1.5),
-          FlSpot(5, 1.4),
-          FlSpot(7, 3.4),
-          FlSpot(10, 2),
-          FlSpot(12, 2.2),
+          FlSpot(1, 1),
+          FlSpot(1, 1),
+          FlSpot(1, 1),
+          FlSpot(1, 1),
+          FlSpot(1, 1),
           FlSpot(13, 1.8),
         ],
       );
@@ -286,7 +286,7 @@ class LineChartSample1State extends State<LineChartSample1> {
     return AspectRatio(
       aspectRatio: 1.23,
       child: Container(
-          margin: EdgeInsets.only(right: 25, left: 25, bottom: 25),
+          margin: EdgeInsets.only(top: 15, bottom: 25, right: 15, left: 15),
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(18)),
           gradient: LinearGradient(

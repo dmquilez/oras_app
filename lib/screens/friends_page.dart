@@ -30,14 +30,8 @@ class _FriendsPageState extends State<FriendsPage> {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            bottom: const TabBar(
-              tabs: [
-                Tab(text: "Ranking"),
-                Tab(text: "Friends"),
-                Tab(text: "Requests",),
-              ],
 
-            ),
+
             title: Text("Friends"),centerTitle: true,
             actions: <Widget>[
               IconButton(
@@ -51,6 +45,15 @@ class _FriendsPageState extends State<FriendsPage> {
                 },
               )
             ],
+            bottom: TabBar(
+              tabs: [
+                Tab(text: "Ranking"),
+                Tab(text: "Friends"),
+                Tab(text: "Requests",),
+              ],
+
+            ),
+            systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.blue),
           ),
           drawer: CustomDrawer.getDrawer(context),
           body: TabBarView(
