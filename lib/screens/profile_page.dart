@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:oras_app/services/firebase_service.dart';
 import 'package:oras_app/utils/constants.dart';
@@ -41,19 +42,32 @@ class _ProfilePageState extends State<ProfilePage> {
           ],
           systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.blue),
           title: Text("Profile"),
-          centerTitle: true,
         ),
         drawer: CustomDrawer.getDrawer(context),
         body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(user!.email!),
-                Text(user!.displayName!),
-                CircleAvatar(
-                  backgroundImage: NetworkImage(user!.photoURL!),
-                  radius: 20,
-                )
+                Container(
+                  width: 150,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blue, width: 4.0),
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: NetworkImage(FirebaseAuth.instance.currentUser!.photoURL?? ''),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 24.0),
+                Text(FirebaseAuth.instance.currentUser!.displayName?? '', style: TextStyle(
+                  fontSize: 25.0,
+                )),
+            Text(FirebaseAuth.instance.currentUser!.email?? '', style: TextStyle(
+              fontSize: 14.0,
+            )),
+
               ],
             )));
   }

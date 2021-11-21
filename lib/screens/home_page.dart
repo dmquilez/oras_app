@@ -117,13 +117,13 @@ double global_consumption_4_KOF = 0;
 double global_consumption_5_KOF = 0;
 double global_consumption_6_KOF = 0;
 
-double global_consumption_0_WM = 0;
-double global_consumption_1_WM = 0;
-double global_consumption_2_WM = 0;
-double global_consumption_3_WM = 0;
-double global_consumption_4_WM = 0;
-double global_consumption_5_WM = 0;
-double global_consumption_6_WM = 0;
+int global_consumption_0_WM = 0;
+int global_consumption_1_WM = 0;
+int global_consumption_2_WM = 0;
+int global_consumption_3_WM = 0;
+int global_consumption_4_WM = 0;
+int global_consumption_5_WM = 0;
+int global_consumption_6_WM = 0;
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -219,13 +219,13 @@ class _HomePageState extends State<HomePage> {
 
         //final String consumption = event.snapshot.value;
         setState(() {
-          global_consumption_0_WM =  double.parse(consumption_monday.toStringAsFixed(2));
-          global_consumption_1_WM =  double.parse(consumption_tuesday.toStringAsFixed(2));
-          global_consumption_2_WM =  double.parse(consumption_wednesday.toStringAsFixed(2));
-          global_consumption_3_WM =  double.parse(consumption_thursday.toStringAsFixed(2));
-          global_consumption_4_WM =  double.parse(consumption_predict_friday.toStringAsFixed(2));
-          global_consumption_5_WM =  double.parse(consumption_predict_saturday.toStringAsFixed(2));
-          global_consumption_6_WM =  double.parse(consumption_predict_sunday.toStringAsFixed(2));
+          global_consumption_0_WM =  int.parse(consumption_monday.toStringAsFixed(2));
+          global_consumption_1_WM =  int.parse(consumption_tuesday.toStringAsFixed(2));
+          global_consumption_2_WM =  int.parse(consumption_wednesday.toStringAsFixed(2));
+          global_consumption_3_WM =  int.parse(consumption_thursday.toStringAsFixed(2));
+          global_consumption_4_WM =  int.parse(consumption_predict_friday.toStringAsFixed(2));
+          global_consumption_5_WM =  int.parse(consumption_predict_saturday.toStringAsFixed(2));
+          global_consumption_6_WM =  int.parse(consumption_predict_sunday.toStringAsFixed(2));
         });
 
       }
@@ -298,8 +298,7 @@ class _HomePageState extends State<HomePage> {
                               Padding(
                                 padding: const EdgeInsets.all(16),
                                 child:
-                                Text("You are saving water", style: TextStyle(
-
+                                Text("Earthy will be angry if your water consumption is too high. Try to make Earthy happy and proud of you!",textAlign: TextAlign.center, style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 25.0,
                                   fontWeight:  FontWeight.w300,
@@ -318,7 +317,7 @@ class _HomePageState extends State<HomePage> {
                     BarChartSample1(50,45,72,35,46,32, 37,'Water Usage (min)','Household',Color(
                         0xff3be2ba),
                         Color(0xff0f4a3c),"min",75),
-                    ]),
+                  ]),
 
               GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
                   shrinkWrap: true, children: [
@@ -327,10 +326,10 @@ class _HomePageState extends State<HomePage> {
                     BarChartSample1(global_consumption_0_KOF,global_consumption_1_KOF,global_consumption_2_KOF,global_consumption_3_KOF,global_consumption_4_KOF,global_consumption_5_KOF, global_consumption_6_KOF,'Water Consumption (L)','Kitchen',Color(
                         0xffde6d59),
                         Color(0xff7f3e32), "L",150),
-                    BarChartSample1(global_consumption_0_WM,global_consumption_1_WM,global_consumption_2_WM,global_consumption_3_WM,global_consumption_4_WM,global_consumption_5_WM, global_consumption_6_WM,'Water Consumption (L)','Washing Machine',Color(
+                    BarChartSample1(40,67,210,143,120,90, 180,'Water Consumption (L)','Washing Machine',Color(
                         0xffe7c45c),
                         Color(0xffb39847),"L",240),
-                    ]),
+                  ]),
 
 
               GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
@@ -343,7 +342,7 @@ class _HomePageState extends State<HomePage> {
                     BarChartSample1(40,20,73,16,30,42, 55,'Energy (kWh)','Washing Machine',Color(
                         0xffe7c45c),
                         Color(0xffb39847),"kWh",80),
-                    ]),
+                  ]),
 
 
               GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
@@ -356,7 +355,7 @@ class _HomePageState extends State<HomePage> {
                     BarChartSample1(40,20,73,16,30,42, 55,'Budget (€)','Washing Machine',Color(
                         0xffe7c45c),
                         Color(0xffb39847),"€",80),
-                    ]),
+                  ]),
             ],
           ),
         ),

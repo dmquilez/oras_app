@@ -59,7 +59,24 @@ class _FriendsPageState extends State<FriendsPage> {
           body: TabBarView(
             children: [
 
-              Icon(Icons.wheelchair_pickup),
+          StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance.collection('users').orderBy('average', descending: false).snapshots(),
+          builder: (BuildContext context,
+              AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) return CircularProgressIndicator();
+            return ListView(
+              padding: const EdgeInsets.all(8),
+              children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                return ListTile(
+                    title:  Text(document['name']),
+                    subtitle:  Text(
+                        'Average (L): ' + document['average'].toString()),
+                    leading: Icon(Icons.person),
+                );
+              }).toList(),
+            );
+          },
+        ),
               StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance.collection("friends")
                     .where("to", isEqualTo: FirebaseAuth.instance.currentUser!.email)
