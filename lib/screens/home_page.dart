@@ -27,6 +27,7 @@ import 'package:oras_app/charts/pie_chart_sample2.dart';
 import 'package:oras_app/charts/pie_chart_sample3.dart';
 import 'package:oras_app/charts/scatter_chart_sample1.dart';
 import 'package:oras_app/charts/scatter_chart_sample2.dart';
+import 'package:oras_app/flip_card.dart';
 
 
 class DrawerItem {
@@ -91,6 +92,7 @@ class CustomDrawer {
     );
   }
 }
+
 double global_consumption_0 = 0;
 double global_consumption_1 = 0;
 double global_consumption_2 = 0;
@@ -98,6 +100,30 @@ double global_consumption_3 = 0;
 double global_consumption_4 = 0;
 double global_consumption_5 = 0;
 double global_consumption_6 = 0;
+
+double global_consumption_0_HS = 0;
+double global_consumption_1_HS = 0;
+double global_consumption_2_HS = 0;
+double global_consumption_3_HS = 0;
+double global_consumption_4_HS = 0;
+double global_consumption_5_HS = 0;
+double global_consumption_6_HS = 0;
+
+double global_consumption_0_KOF = 0;
+double global_consumption_1_KOF = 0;
+double global_consumption_2_KOF = 0;
+double global_consumption_3_KOF = 0;
+double global_consumption_4_KOF = 0;
+double global_consumption_5_KOF = 0;
+double global_consumption_6_KOF = 0;
+
+double global_consumption_0_WM = 0;
+double global_consumption_1_WM = 0;
+double global_consumption_2_WM = 0;
+double global_consumption_3_WM = 0;
+double global_consumption_4_WM = 0;
+double global_consumption_5_WM = 0;
+double global_consumption_6_WM = 0;
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -123,27 +149,93 @@ class _HomePageState extends State<HomePage> {
 
     Future.delayed(Duration(milliseconds: 100), () {
 
-      final _firebaseRef = _database.child("houses/0/apartments/$userApartment/");
+      final _firebaseRef = _database.child("$userApartment/");
 
-    _firebaseRef.child("Dishwasher/measurements/").orderByChild("TimeStamp").equalTo("2020-01-01T04:30:42").onValue.listen((event) {
-      //final data = List<String>.from(event.snapshot.value);
-      print(event.snapshot.value[0]['Consumption']);
+      _firebaseRef.child("Hydractiva_shower/").onValue.listen((event) {
 
-      final String consumption = (int.parse(event.snapshot.value[0]['FlowTime']) / 60).toString();
+      //print(event.snapshot.value[0]['Consumption']);
+
+      final double consumption_monday = event.snapshot.value['consumption'][46];
+      final double consumption_tuesday = event.snapshot.value['consumption'][47];
+      final double consumption_wednesday = event.snapshot.value['consumption'][48];
+      final double consumption_thursday = event.snapshot.value['consumption'][49];
+      final double consumption_predict_friday = event.snapshot.value['consumption_predict'][0];
+      final double consumption_predict_saturday = event.snapshot.value['consumption_predict'][1];
+      final double consumption_predict_sunday = event.snapshot.value['consumption_predict'][2];
+
+
 
       //final String consumption = event.snapshot.value;
       setState(() {
-        global_consumption_0 =  double.parse(consumption);
-        global_consumption_1 =  double.parse(consumption);
-        global_consumption_2 =  double.parse(consumption);
-        global_consumption_3 =  double.parse(consumption);
-        global_consumption_4 =  double.parse(consumption);
-        global_consumption_5 =  double.parse(consumption);
-        global_consumption_6 =  double.parse(consumption);
+        global_consumption_0_HS =  double.parse(consumption_monday.toStringAsFixed(2));
+        global_consumption_1_HS =  double.parse(consumption_tuesday.toStringAsFixed(2));
+        global_consumption_2_HS =  double.parse(consumption_wednesday.toStringAsFixed(2));
+        global_consumption_3_HS =  double.parse(consumption_thursday.toStringAsFixed(2));
+        global_consumption_4_HS =  double.parse(consumption_predict_friday.toStringAsFixed(2));
+        global_consumption_5_HS =  double.parse(consumption_predict_saturday.toStringAsFixed(2));
+        global_consumption_6_HS =  double.parse(consumption_predict_sunday.toStringAsFixed(2));
       });
     });
+
+      _firebaseRef.child("Kitchen_optima_faucet/").onValue.listen((event) {
+
+        //print(event.snapshot.value[0]['Consumption']);
+
+        final double consumption_monday = event.snapshot.value['consumption'][46];
+        final double consumption_tuesday = event.snapshot.value['consumption'][47];
+        final double consumption_wednesday = event.snapshot.value['consumption'][48];
+        final double consumption_thursday = event.snapshot.value['consumption'][49];
+        final double consumption_predict_friday = event.snapshot.value['consumption_predict'][0];
+        final double consumption_predict_saturday = event.snapshot.value['consumption_predict'][1];
+        final double consumption_predict_sunday = event.snapshot.value['consumption_predict'][2];
+
+
+
+        //final String consumption = event.snapshot.value;
+        setState(() {
+          global_consumption_0_KOF =  double.parse(consumption_monday.toStringAsFixed(2));
+          global_consumption_1_KOF =  double.parse(consumption_tuesday.toStringAsFixed(2));
+          global_consumption_2_KOF =  double.parse(consumption_wednesday.toStringAsFixed(2));
+          global_consumption_3_KOF =  double.parse(consumption_thursday.toStringAsFixed(2));
+          global_consumption_4_KOF =  double.parse(consumption_predict_friday.toStringAsFixed(2));
+          global_consumption_5_KOF =  double.parse(consumption_predict_saturday.toStringAsFixed(2));
+          global_consumption_6_KOF =  double.parse(consumption_predict_sunday.toStringAsFixed(2));
+        });
+      });
+
+      _firebaseRef.child("Washing_machine/").onValue.listen((event) {
+
+        //print(event.snapshot.value[0]['Consumption']);
+
+        final double consumption_monday = event.snapshot.value['consumption'][46];
+        final double consumption_tuesday = event.snapshot.value['consumption'][47];
+        final double consumption_wednesday = event.snapshot.value['consumption'][48];
+        final double consumption_thursday = event.snapshot.value['consumption'][49];
+        final double consumption_predict_friday = event.snapshot.value['consumption_predict'][0];
+        final double consumption_predict_saturday = event.snapshot.value['consumption_predict'][1];
+        final double consumption_predict_sunday = event.snapshot.value['consumption_predict'][2];
+
+
+
+        //final String consumption = event.snapshot.value;
+        setState(() {
+          global_consumption_0_WM =  double.parse(consumption_monday.toStringAsFixed(2));
+          global_consumption_1_WM =  double.parse(consumption_tuesday.toStringAsFixed(2));
+          global_consumption_2_WM =  double.parse(consumption_wednesday.toStringAsFixed(2));
+          global_consumption_3_WM =  double.parse(consumption_thursday.toStringAsFixed(2));
+          global_consumption_4_WM =  double.parse(consumption_predict_friday.toStringAsFixed(2));
+          global_consumption_5_WM =  double.parse(consumption_predict_saturday.toStringAsFixed(2));
+          global_consumption_6_WM =  double.parse(consumption_predict_sunday.toStringAsFixed(2));
+        });
+
   }
-    );}
+    );
+
+    }
+    );
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -169,44 +261,75 @@ class _HomePageState extends State<HomePage> {
           body: TabBarView(
             children: [
               GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
-                  shrinkWrap: true, children: [Card(
-                    margin: EdgeInsets.only(right: 25,left: 25, top: 25),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
-                    color:  Color(0xff252d49),
-                    child: Stack(
-                      alignment: AlignmentDirectional.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(16),
-                          child:
-                            Image.asset(
-                              "assets/images/very_happy.gif",
-                            ),
-                          ),
-
-
-                      ],
+                  shrinkWrap: true, children: [
+            FlipCard(
+            fill: Fill.fillBack, // Fill the back side of the card to make in the same size as the front.
+            direction: FlipDirection.HORIZONTAL, // default
+            front: Container(
+              child: Card(
+                margin: EdgeInsets.only(right: 25,left: 25, top: 25),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
+                color:  Color(0xff252d49),
+                child: Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child:
+                      Image.asset(
+                        "assets/images/very_happy.gif",
+                      ),
                     ),
-                  ),
-                    BarChartSample1(global_consumption_0,global_consumption_1,global_consumption_2,global_consumption_3,global_consumption_4,global_consumption_5, global_consumption_6),
+
+
+                  ],
+                ),
+              ),
+            ),
+            back: Container(
+              child: Card(
+                margin: EdgeInsets.only(right: 25,left: 25, top: 25),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
+                color:  Color(0xff252d49),
+                child: Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child:
+                      Text("Good job!", style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      )),
+                    ),
+
+
+
+
+                  ],
+                ),
+              ),
+            ),
+          ),
+                    BarChartSample1(global_consumption_0_HS,global_consumption_1_HS,global_consumption_2_HS,global_consumption_3_HS,global_consumption_4_HS,global_consumption_5_HS, global_consumption_6_HS),
                     LineChartSample1()]),
 
               GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
                   shrinkWrap: true, children: [
-                    BarChartSample1(global_consumption_0,global_consumption_1,global_consumption_2,global_consumption_3,global_consumption_4,global_consumption_5, global_consumption_6),
+                    BarChartSample1(global_consumption_0_HS,global_consumption_1_HS,global_consumption_2_HS,global_consumption_3_HS,global_consumption_4_HS,global_consumption_5_HS, global_consumption_6_HS),
                     LineChartSample1()]),
 
 
               GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
                   shrinkWrap: true, children: [
-                    BarChartSample1(global_consumption_0,global_consumption_1,global_consumption_2,global_consumption_3,global_consumption_4,global_consumption_5, global_consumption_6),
+                    BarChartSample1(global_consumption_0_HS,global_consumption_1_HS,global_consumption_2_HS,global_consumption_3_HS,global_consumption_4_HS,global_consumption_5_HS, global_consumption_6_HS),
                     LineChartSample1()]),
 
 
               GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
                   shrinkWrap: true, children: [
-                    BarChartSample1(global_consumption_0,global_consumption_1,global_consumption_2,global_consumption_3,global_consumption_4,global_consumption_5, global_consumption_6),
-                    LineChartSample1()])
+                    BarChartSample1(global_consumption_0_HS,global_consumption_1_HS,global_consumption_2_HS,global_consumption_3_HS,global_consumption_4_HS,global_consumption_5_HS, global_consumption_6_HS),
+                    LineChartSample1()]),
             ],
           ),
         ),
