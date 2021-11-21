@@ -322,9 +322,9 @@ class _HomePageState extends State<HomePage> {
 
               GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
                   shrinkWrap: true, children: [
-                    BarChartSample1(52,65,73,27,34,63, 41,'Water Consumption (L)','Shower',Color(
+                    BarChartSample1(global_consumption_0_HS,global_consumption_1_HS,global_consumption_2_HS,global_consumption_3_HS,global_consumption_4_HS,global_consumption_5_HS, global_consumption_6_HS,'Water Consumption (L)','Shower',Color(
                         0xff66d3ff), Color(0xff0f668b),"L",75),
-                    BarChartSample1(74,26,113,53,89,130, 15,'Water Consumption (L)','Kitchen',Color(
+                    BarChartSample1(global_consumption_0_KOF,global_consumption_1_KOF,global_consumption_2_KOF,global_consumption_3_KOF,global_consumption_4_KOF,global_consumption_5_KOF, global_consumption_6_KOF,'Water Consumption (L)','Kitchen',Color(
                         0xffde6d59),
                         Color(0xff7f3e32), "L",150),
                     BarChartSample1(global_consumption_0_WM,global_consumption_1_WM,global_consumption_2_WM,global_consumption_3_WM,global_consumption_4_WM,global_consumption_5_WM, global_consumption_6_WM,'Water Consumption (L)','Washing Machine',Color(
@@ -335,27 +335,27 @@ class _HomePageState extends State<HomePage> {
 
               GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
                   shrinkWrap: true, children: [
-                    BarChartSample1(global_consumption_0_HS,global_consumption_1_HS,global_consumption_2_HS,global_consumption_3_HS,global_consumption_4_HS,global_consumption_5_HS, global_consumption_6_HS,'Energy (kWh)','Shower',Color(
+                    BarChartSample1(52,65,73,27,34,63, 41,'Energy (kWh)','Shower',Color(
                         0xff66d3ff), Color(0xff0f668b),"kWh",75),
-                    BarChartSample1(global_consumption_0_KOF,global_consumption_1_KOF,global_consumption_2_KOF,global_consumption_3_KOF,global_consumption_4_KOF,global_consumption_5_KOF, global_consumption_6_KOF,'Energy (kWh)','Kitchen',Color(
+                    BarChartSample1(74,26,113,53,89,130, 15,'Energy (kWh)','Kitchen',Color(
                         0xffde6d59),
                         Color(0xff7f3e32),"kWh",150),
-                    BarChartSample1(global_consumption_0_WM,global_consumption_1_WM,global_consumption_2_WM,global_consumption_3_WM,global_consumption_4_WM,global_consumption_5_WM, global_consumption_6_WM,'Energy (kWh)','Washing Machine',Color(
+                    BarChartSample1(40,20,73,16,30,42, 55,'Energy (kWh)','Washing Machine',Color(
                         0xffe7c45c),
-                        Color(0xffb39847),"kWh",240),
+                        Color(0xffb39847),"kWh",80),
                     ]),
 
 
               GridView.count(crossAxisCount: 1, scrollDirection: Axis.vertical,
                   shrinkWrap: true, children: [
-                    BarChartSample1(global_consumption_0_HS,global_consumption_1_HS,global_consumption_2_HS,global_consumption_3_HS,global_consumption_4_HS,global_consumption_5_HS, global_consumption_6_HS,'Budget (€)','Shower',Color(
+                    BarChartSample1(52,65,73,27,34,63, 41,'Budget (€)','Shower',Color(
                         0xff66d3ff), Color(0xff0f668b),"€",75),
-                    BarChartSample1(global_consumption_0_KOF,global_consumption_1_KOF,global_consumption_2_KOF,global_consumption_3_KOF,global_consumption_4_KOF,global_consumption_5_KOF, global_consumption_6_KOF,'Budget (€)','Kitchen',Color(
+                    BarChartSample1(74,26,113,53,89,130, 15,'Budget (€)','Kitchen',Color(
                         0xffde6d59),
                         Color(0xff7f3e32),"€",150),
-                    BarChartSample1(global_consumption_0_WM,global_consumption_1_WM,global_consumption_2_WM,global_consumption_3_WM,global_consumption_4_WM,global_consumption_5_WM, global_consumption_6_WM,'Budget (€)','Washing Machine',Color(
+                    BarChartSample1(40,20,73,16,30,42, 55,'Budget (€)','Washing Machine',Color(
                         0xffe7c45c),
-                        Color(0xffb39847),"€",240),
+                        Color(0xffb39847),"€",80),
                     ]),
             ],
           ),
